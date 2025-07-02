@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilogram to Pound Converter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type='text/javascript' src='//pl27053500.profitableratecpm.com/4b/b9/28/4bb928c0083c896fe9d8e3b2c6e1378f.js'></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <!-- Top Ad -->
+    <div id="topAd" class="fixed top-0 left-0 right-0 h-16 bg-gray-300 flex items-center justify-center">
+        <script async="async" data-cfasync="false" src="//pl27053508.profitableratecpm.com/3da34d2328b6695c2c8c358c08765dd0/invoke.js"></script>
+        <div id="container-top-ad"></div>
+    </div>
+    <!-- Left Ad -->
+    <div id="leftAd" class="fixed left-0 top-16 bottom-16 w-24 bg-gray-300 flex items-center justify-center">
+        <script async="async" data-cfasync="false" src="//pl27053508.profitableratecpm.com/3da34d2328b6695c2c8c358c08765dd0/invoke.js"></script>
+        <div id="container-left-ad"></div>
+    </div>
+    <!-- Right Ad -->
+    <div id="rightAd" class="fixed right-0 top-16 bottom-16 w-24 bg-gray-300 flex items-center justify-center">
+        <script async="async" data-cfasync="false" src="//pl27053508.profitableratecpm.com/3da34d2328b6695c2c8c358c08765dd0/invoke.js"></script>
+        <div id="container-right-ad"></div>
+    </div>
+    <!-- Bottom Ad -->
+    <div id="bottomAd" class="fixed bottom-0 left-0 right-0 h-16 bg-gray-300 flex items-center justify-center">
+        <script async="async" data-cfasync="false" src="//pl27053508.profitableratecpm.com/3da34d2328b6695c2c8c358c08765dd0/invoke.js"></script>
+        <div id="container-bottom-ad"></div>
+    </div>
+
+    <!-- Input View -->
+    <div id="inputView" class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full mx-24 mt-16 mb-16">
+        <h1 class="text-2xl font-bold text-center mb-6">Kilogram to Pound Converter</h1>
+        <div class="mb-4">
+            <label for="kilogram" class="block text-sm font-medium text-gray-700">Kilogram</label>
+            <input type="number" id="kilogram" placeholder="Enter kilograms" step="any" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div class="mb-4">
+            <label for="pound" class="block text-sm font-medium text-gray-700">Pound</label>
+            <input type="number" id="pound" placeholder="Enter pounds" step="any" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div class="text-center mb-4">
+            <p id="inputTimer" class="text-lg font-semibold">30</p>
+            <p class="text-sm text-gray-500">Seconds remaining</p>
+        </div>
+        <!-- Ad above Check the Result button -->
+        <div id="buttonAd" class="mb-4 bg-gray-300 h-12 flex items-center justify-center">
+            <script async="async" data-cfasync="false" src="//pl27053508.profitableratecpm.com/3da34d2328b6695c2c8c358c08765dd0/invoke.js"></script>
+            <div id="container-button-ad"></div>
+        </div>
+        <button id="checkResult" class="hidden w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">Check the Result</button>
+    </div>
+
+    <!-- Result View -->
+    <div id="resultView" class="hidden bg-white p-8 rounded-lg shadow-lg max-w-md w-full mx-24 mt-16 mb-16">
+        <h1 class="text-2xl font-bold text-center mb-6">Conversion Result</h1>
+        <div class="text-center">
+            <p id="resultTimer" class="text-lg font-semibold">30</p>
+            <p class="text-sm text-gray-500">Seconds remaining</p>
+            <!-- Ad above Result -->
+            <div id="resultAd" class="mt-4 mb-4 bg-gray-300 h-12 flex items-center justify-center">
+                <p class="text-sm font-medium text-gray-700">Result Advertisement</p>
+            </div>
+            <p id="result" class="mt-4 text-lg font-medium hidden"></p>
+            <div id="seeResult" class="mt-4 w-full h-12 bg-green-600 text-white flex items-center justify-center rounded-md cursor-default">See Result</div>
+            <button id="backToHome" class="mt-2 w-full bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 hidden">Back to Home Page</button>
+        </div>
+    </div>
+
+    <script>
+        let inputTimeLeft = 30;
+        let resultTimeLeft = 30;
+        let inputTimerInterval = null;
+        const inputTimerDisplay = document.getElementById('inputTimer');
+        const resultTimerDisplay = document.getElementById('resultTimer');
+        const checkResultBtn = document.getElementById('checkResult');
+        const backToHomeBtn = document.getElementById('backToHome');
+        const seeResultDiv = document.getElementById('seeResult');
+        const kgInput = document.getElementById('kilogram');
+        const lbInput = document.getElementById('pound');
+        const inputView = document.getElementById('inputView');
+        const resultView = document.getElementById('resultView');
+        const resultDisplay = document.getElementById('result');
+        const adAreas = [
+            document.getElementById('topAd'),
+            document.getElementById('leftAd'),
+            document.getElementById('rightAd'),
+            document.getElementById('bottomAd'),
+            document.getElementById('buttonAd'),
+            document.getElementById('resultAd')
+        ];
+
+        // Disable the other input when one is filled
+        kgInput.addEventListener('input', () => {
+            if (kgInput.value) lbInput.disabled = true;
+            else lbInput.disabled = false;
+        });
+
+        lbInput.addEventListener('input', () => {
+            if (lbInput.value) kgInput.disabled = true;
+            else kgInput.disabled = false;
+        });
+
+        // Input view timer logic
+        function startInputTimer() {
+            // Ensure any existing timer is cleared
+            if (inputTimerInterval) {
+                clearInterval(inputTimerInterval);
+            }
+            inputTimeLeft = 30;
+            inputTimerDisplay.textContent = inputTimeLeft;
+            checkResultBtn.classList.add('hidden'); // Ensure button is hidden at start
+            inputTimerInterval = setInterval(() => {
+                inputTimeLeft--;
+                inputTimerDisplay.textContent = inputTimeLeft;
+                if (inputTimeLeft <= 0) {
+                    clearInterval(inputTimerInterval);
+                    inputTimerInterval = null; // Reset interval reference
+                    checkResultBtn.classList.remove('hidden'); // Show button
+                }
+            }, 1000);
+        }
+
+        // Start the input timer when the page loads
+        startInputTimer();
+
+        function showResultView() {
+            const kg = parseFloat(kgInput.value);
+            const lb = parseFloat(lbInput.value);
+            let result;
+            if (kg) {
+                result = (kg * 2.20462).toFixed(2); // Convert kg to lb
+                resultDisplay.textContent = `${kg} kg = ${result} lb`;
+            } else if (lb) {
+                result = (lb / 2.20462).toFixed(2); // Convert lb to kg
+                resultDisplay.textContent = `${lb} lb = ${result} kg`;
+            } else {
+                resultDisplay.textContent = 'No valid input provided';
+            }
+
+            inputView.classList.add('hidden');
+            resultView.classList.remove('hidden');
+
+            // Result view timer logic
+            resultTimeLeft = 30;
+            resultTimerDisplay.textContent = resultTimeLeft;
+            resultTimerDisplay.classList.remove('hidden');
+            const resultTimer = setInterval(() => {
+                resultTimeLeft--;
+                resultTimerDisplay.textContent = resultTimeLeft;
+                if (resultTimeLeft <= 0) {
+                    clearInterval(resultTimer);
+                    resultTimerDisplay.classList.add('hidden');
+                    resultDisplay.classList.remove('hidden');
+                    backToHomeBtn.classList.remove('hidden');
+                }
+            }, 1000);
+        }
+
+        checkResultBtn.addEventListener('click', showResultView);
+
+        // Ensure Back to Home button works
+        backToHomeBtn.addEventListener('click', backToHomePage);
+
+        function backToHomePage() {
+            // Reset input fields and timers
+            kgInput.value = '';
+            lbInput.value = '';
+            kgInput.disabled = false;
+            lbInput.disabled = false;
+            inputTimeLeft = 30;
+            resultTimeLeft = 30;
+            inputTimerDisplay.textContent = inputTimeLeft;
+            resultTimerDisplay.textContent = resultTimeLeft;
+            resultDisplay.classList.add('hidden');
+            backToHomeBtn.classList.add('hidden');
+            checkResultBtn.classList.add('hidden');
+            inputView.classList.remove('hidden');
+            resultView.classList.add('hidden');
+
+            // Restart input timer
+            startInputTimer();
+        }
+    </script>
+    <script type='text/javascript' src='//pl27053478.profitableratecpm.com/ed/2b/aa/ed2baae3a4d71232647e5c200bd4f2d5.js'></script>
+</body>
+</html>
